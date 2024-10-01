@@ -1,0 +1,69 @@
+.contact{
+    padding: 0 20px;
+    margin-bottom: 150px;
+    .contact-container{
+        max-width: 1600px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .contact-text{
+            width: 45%;  
+            .heading{
+                h2{
+                   font-size: 80px;
+                   font-family: $montserrat;
+                   color: #000;
+                   font-weight: 900;
+                   margin-bottom: 20px;     
+                   text-transform: uppercase;
+                }    
+            }
+            .subtext{
+                font-size: 22px;
+                font-family: $montserrat;
+                color: rgba(0,0,0,0.5);
+                font-weight: 600;
+                margin-bottom: 20px;   
+                line-height: 32px;
+            }
+        }
+        .contact-form{
+            width: 48%;    
+            padding: 70px 40px;
+            border-radius: 32px;
+            background: #0575E6;
+            box-shadow: 0 4px 8px 0 rgba(5, 117, 230, 0.6), 0 6px 20px 0 rgba(5, 117, 230, 0.6);
+            form{
+                .gfield{
+                    input,textarea{
+                        background: rgba(0,0,0,0);
+                        border-top: 0;
+                        border-right: 0;
+                        border-left: 0;
+                        border-bottom: 2px solid #fff;
+                        border-radius: 0;
+                        color: #fff;
+                        font-size: 22px;
+                        font-weight: 400;
+                        font-family: $montserrat;
+                        padding: 10px 5px;
+                    }
+                }    
+                #gform_submit_button_1{
+                    padding: 20px;
+                    border-radius: 17px;
+                    background: #fff;
+                    color: #000;
+                    font-family: $montserrat;
+                    font-weight: 900;
+                    font-size: 20px;
+                    &:hover{
+                        color: #fff;
+                        background: rgba(0,0,0,0.3);    
+                    }
+                }
+            }
+        }
+    }    
+}

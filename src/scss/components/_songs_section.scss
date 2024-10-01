@@ -1,0 +1,162 @@
+.songs-section{
+    padding: 150px 20px;
+    .songs-container{
+        max-width: 1600px;
+        margin: 0 auto;    
+        border-radius: 32px;
+        padding: 50px 20px;
+        background: radial-gradient(90.16% 143.01% at 15.32% 21.04%, rgba(5, 117, 230, 4) 0%, rgba(5, 117, 230, 0.9) 77.08%, rgba(5, 117, 230, 0.5) 100%), ;
+        .songs-top{
+            margin-bottom: 50px;
+            .heading{
+                margin-bottom: 20px;
+                h2{
+                    font-family: $montserrat;
+                    font-size: 50px;
+                    font-weight: 900;
+                    color: #ffffff;
+                    letter-spacing: -1%;  
+                    text-shadow: 2px 2px #000000;
+                    display: inline-block;  
+                    text-transform: uppercase;
+                    line-height: 38px;    
+                }    
+            }   
+            .sub-heading{
+                p{
+                    font-family: $montserrat;
+                    font-size: 20px;
+                    font-weight: 900;
+                    color: #ffffff;
+                    letter-spacing: -1%;  
+                    text-shadow: 2px 2px #000000;
+                    display: inline-block;  
+                    text-transform: uppercase;
+                    line-height: 32px;   
+                } 
+            } 
+        }
+        #password-form{
+            label{
+                font-family: $montserrat;
+                font-size: 16px;
+                color: #fff;
+                font-weight: 400;  
+                &.passlabel{
+                    font-family: $montserrat;
+                    font-size: 24px;
+                    color: #fff;
+                    font-weight: 600;    
+                }    
+            }
+            #password{
+                padding: 10px;
+                border-radius: 10px;
+                border: none;
+                background: rgba(0,0,0,0.1); 
+                font-family: $montserrat;
+                font-size: 20px;
+            }
+            #toggle-password{
+                padding: 10px !important;
+                border-radius: 10px !important;
+                border: none !important;
+                background: rgba(0,0,0,0.1) !important;
+            }
+            button{
+                margin-top: 10px;
+                margin-bottom: 20px;
+                display: block; 
+                padding: 15px 35px;
+                border: none;
+                border-radius: 12px;
+                cursor: pointer;
+                font-family: $montserrat;
+                font-weight: 600;
+                font-size: 18px;   
+                color: #fff;
+                background: rgba(0,0,0,0.1);
+                text-transform: uppercase;
+                transition: all 0.4s ease;
+                &:hover{
+                    background: #fff;
+                    color: #000;    
+                }
+            }  
+            #req-pass{
+                font-family: $montserrat;
+                font-size: 18px;
+                margin-top: 30px;
+                text-transform: uppercase;
+                color: #fff;
+            }
+        }
+        #songs-list{
+            width: 100%;    
+            .song-list{
+                width: 100%;   
+                border-collapse: separate;
+                border-spacing: 0 20px; 
+                thead{
+                    tr{
+                        th{
+                            text-align: left;    
+                            font-family: $montserrat;
+                            font-size: 24px;
+                            font-weight: 900;
+                            text-transform: uppercase;
+                            color: white;
+                        }    
+                    }    
+                }
+                tbody{
+                    tr{
+                        &:hover{
+                            cursor: pointer;
+                            background: #fff;    
+                            td{
+                                color: #000;    
+                            }
+                        }
+                        td{
+                            text-align: left;   
+                            font-family: $montserrat;
+                            font-size: 20px;
+                            font-weight: 600;
+                            color: white;
+                            padding: 5px;
+                            &.song-controls{
+                                border-radius: 30px 0px 0px 30px;  
+                                button{
+                                    background: rgba(0,0,0,0);
+                                    border: none;    
+                                    padding: 0;
+                                }  
+                            }
+                            &.act{
+                                border-radius: 0px 30px 30px 0px;
+                                text-align: center;
+                                a{
+                                    text-decoration: none;
+                                    margin-left: 5px;
+                                    &:hover{
+                                        svg{
+                                            path{
+                                                fill: black !important;    
+                                            } 
+                                        }  
+                                    }
+                                    svg{
+                                        path{
+                                            fill: white;    
+                                        } 
+                                    }    
+                                }
+                            }
+                        }    
+                    }    
+                }
+            }
+        }
+    }   
+}

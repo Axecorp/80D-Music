@@ -1,0 +1,91 @@
+.banner{
+    padding: 120px 20px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    .audio-img{
+        position: absolute;
+        top: 0;
+        left: 0;    
+        animation: scaleAnimation 2s infinite ease-in-out;
+    }
+    .audio-img-2{
+        position: absolute;
+        bottom: 0;
+        right: 0;    
+        animation: scaleAnimation 2s infinite ease-in-out;
+    }
+    .banner-container{
+        max-width: 1600px;
+        margin: 0 auto;
+        display: flex;
+        .text-container{
+            width: 60%;
+            .heading{
+                margin-bottom: 10px;
+                h1{
+                    .shadowed-text{
+                        font-family: $montserrat;
+                        font-size: 150px;
+                        font-weight: 900;
+                        color: #ffffff;
+                        letter-spacing: -1%;  
+                        text-shadow: 2px 2px #000000;
+                        display: inline-block;  
+                        line-height: 100px;
+                    }
+                }    
+            }   
+            .subtext{
+                width: 93%;
+                font-family: $montserrat;
+                font-size: 24px;
+                font-weight: 900;
+                color: #ffffff;
+                letter-spacing: -1%;  
+                text-shadow: 2px 2px #000000;
+                display: inline-block;  
+                line-height: 38px;
+            }    
+        }
+        .image-container{
+            position: absolute;
+            right: 40px;
+            top: 105px;
+            img{
+                width: 100%;
+                height: 100%;
+                animation: swingAnimation 2s infinite ease-in-out;
+            }    
+        }
+    }    
+}
+
+@keyframes swingAnimation {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(20deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes scaleAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
