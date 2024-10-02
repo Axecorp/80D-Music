@@ -23,7 +23,9 @@
         margin: 0 auto;    
         border-radius: 32px;
         padding: 50px 20px;
-        background: radial-gradient(90.16% 143.01% at 15.32% 21.04%, rgba(5, 117, 230, 4) 0%, rgba(5, 117, 230, 0.9) 77.08%, rgba(5, 117, 230, 0.5) 100%), ;
+        background-repeat: no-repeat;
+        background-size: cover;
+        // background: radial-gradient(90.16% 143.01% at 15.32% 21.04%, rgba(5, 117, 230, 4) 0%, rgba(5, 117, 230, 0.9) 77.08%, rgba(5, 117, 230, 0.5) 100%), ;
         @include responsive(xs){
             margin: auto;
             padding: 50px 10px;
@@ -201,7 +203,7 @@
                             cursor: pointer;
                             background: #fff;    
                             td{
-                                color: #000;    
+                                color: #000; 
                             }
                             svg{
                                 path{
@@ -229,6 +231,16 @@
                                     background: rgba(0,0,0,0);
                                     border: none;    
                                     padding: 0;
+                                    &.prev-btn{
+                                        img{
+                                            padding-bottom: 5px;    
+                                        }
+                                    }   
+                                    &.next-btn{
+                                        img{
+                                            padding-bottom: 5px;    
+                                        }
+                                    }   
                                 }  
                             }
                             &.act{
@@ -237,6 +249,9 @@
                                 a{
                                     text-decoration: none;
                                     margin-left: 5px;
+                                    &.disabled-link{
+                                        pointer-events: none;    
+                                    }
                                     &:hover{
                                         svg{
                                             path{
