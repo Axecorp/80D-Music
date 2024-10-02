@@ -1,4 +1,5 @@
 <section class="contact">
+<img src="<?php echo "/wp-content/uploads/2024/10/Group-206.png"; ?>" alt="" class="audio-img-7">
     <div class="contact-container">
         <div class="contact-text">
             <div class="heading">

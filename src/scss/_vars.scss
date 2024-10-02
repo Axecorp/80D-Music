@@ -12,4 +12,21 @@ $custom-breakpoints: (
     max: (minSize: 1500px, maxSize: 0px, maxContWidth: 1201px, name: 'MAX')
 ); 
 
+
+@font-face {
+    font-family: 'MonumentalRegular'; // Give your font a name
+    src: url('../fonts/MonumentExtended-Regular.otf') format('opentype'); // Update the path to your font file
+    font-weight: 400; // Specify the font weight
+    font-style: normal; // Specify the font style
+}
+
+@font-face {
+    font-family: 'MonumentExtendedUltrabold'; // Give your font a name
+    src: url('../fonts/MonumentExtended-Ultrabold.otf') format('opentype'); // Update the path to your font file
+    font-weight: 900; // Specify the font weight
+    font-style: normal; // Specify the font style
+}
+
 $montserrat : "Montserrat", sans-serif;
+$monumentregular: 'MonumentalRegular';
+$monumentbold: 'MonumentExtendedUltrabold';

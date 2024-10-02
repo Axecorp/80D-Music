@@ -1,14 +1,29 @@
 .contact{
     padding: 0 20px;
     margin-bottom: 150px;
+    position: relative;
+    .audio-img-7{
+        position: absolute;
+        bottom: 180px;
+        right: -100px;    
+        animation: scaleAnimation 2s infinite ease-in-out;
+    }
     .contact-container{
         max-width: 1600px;
         margin: 0 auto;
         display: flex;
+        position: relative;
+        z-index: 5;
         justify-content: space-between;
         align-items: center;
+        @include responsive(md){
+            flex-direction: column;
+        }
         .contact-text{
             width: 45%;  
+            @include responsive(md){
+                width: 100%;
+            }
             .heading{
                 h2{
                    font-size: 80px;
@@ -17,6 +32,15 @@
                    font-weight: 900;
                    margin-bottom: 20px;     
                    text-transform: uppercase;
+                    @include responsive(lg){
+                        font-size: 56px;
+                    }
+                    @include responsive(md){
+                        font-size: 42px;
+                    }
+                    @include responsive(sm){
+                        font-size: 32px;
+                    }
                 }    
             }
             .subtext{
@@ -26,6 +50,17 @@
                 font-weight: 600;
                 margin-bottom: 20px;   
                 line-height: 32px;
+                @media screen and (max-width:1024px) {
+                  font-size: 20px;
+                }
+                @include responsive(md) {
+                  font-size: 18px;
+                  line-height: 28px;
+                }
+                @include responsive(xs) {
+                  font-size: 16px;
+                  line-height: 24px;
+                }
             }
         }
         .contact-form{
@@ -34,6 +69,10 @@
             border-radius: 32px;
             background: #0575E6;
             box-shadow: 0 4px 8px 0 rgba(5, 117, 230, 0.6), 0 6px 20px 0 rgba(5, 117, 230, 0.6);
+            @include responsive(md){
+                width: 90%;
+                padding: 40px 20px;
+            }
             form{
                 .gfield{
                     input,textarea{

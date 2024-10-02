@@ -1,4 +1,6 @@
-<section class="songs-section">
+<section class="songs-section">    
+    <img src="<?php echo "/wp-content/uploads/2024/10/Group-206.png"; ?>" alt="" class="audio-img-3">
+    <img src="<?php echo "/wp-content/uploads/2024/10/Group-206.png"; ?>" alt="" class="audio-img-4">
     <div class="songs-container">
         <div class="songs-top">
             <div class="heading">
@@ -19,6 +21,9 @@
             <p id="password-error" style="color: red; display: none;"></p>
         </div>
 
+        <div id="email-form">
+            <?php echo do_shortcode('[gravityform id="2" title="false" description="false" ajax="true"]'); ?>
+        </div>
 
         <div id="songs-list" style="display:none" class="songs-bottom">
             <?php
@@ -52,7 +57,6 @@
                         <th>Controls</th>
                         <th>Title</th>
                         <th>Time</th>
-                        <th>BPM</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -61,7 +65,6 @@
                 while ($the_query->have_posts()) {
                     $the_query->the_post();
                     $song_mp3_file = get_field('song_mp3_file'); 
-                    $bpm = get_field('bpm'); 
                     ?>
                     <tr>
                         <td class="song-controls">
@@ -71,7 +74,6 @@
                         </td>
                         <td><?php the_title(); ?></td>
                         <td class="song-time" data-song="<?php echo esc_url($song_mp3_file); ?>">Calculating...</td>
-                        <td><?php echo 220; ?></td>
                         <td class="act">
                             <a href="#"><svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M12.8417 17.3587C12.4902 17.2495 12.1202 17.1799 11.7903 17.0245C10.5411 16.4356 9.87066 14.9839 10.2111 13.6413C10.2584 13.4558 10.2137 13.3806 10.0508 13.2978C8.58472 12.5514 7.12285 11.7952 5.66013 11.042C5.61077 11.0165 5.56099 10.9919 5.49897 10.9605C4.82689 11.8321 3.95019 12.2856 2.84735 12.2283C2.07612 12.1884 1.40952 11.878 0.872871 11.3201C-0.285235 10.1168 -0.291566 8.29316 0.857681 7.06821C1.94322 5.91076 3.9928 5.70398 5.31544 7.17817C6.98067 6.16976 8.64758 5.1605 10.3124 4.15209C9.66689 2.42187 10.6554 0.760437 12.0025 0.225024C13.4403 -0.346479 14.9954 0.197426 15.7852 1.5523C16.5126 2.80061 16.2067 4.45228 15.0743 5.40167C13.9681 6.32856 12.1092 6.44787 10.8398 5.02463C10.795 5.05053 10.7478 5.07728 10.7014 5.10531C9.13403 6.05427 7.56753 7.00494 5.99807 7.95009C5.87994 8.02142 5.84999 8.07831 5.89808 8.21418C6.08625 8.7479 6.1297 9.29265 5.9774 9.84547C5.96263 9.89982 5.95335 9.95544 5.94196 10.0106C5.94112 10.0157 5.94449 10.0213 5.95208 10.048C7.52492 10.8586 9.11125 11.6759 10.6858 12.4869C10.9098 12.2758 11.1115 12.0538 11.3439 11.8725C13.1319 10.4777 15.8367 11.5965 16.1426 13.8524C16.375 15.5694 15.2553 17.067 13.5437 17.3285C13.5112 17.3336 13.4804 17.3485 13.4488 17.3591C13.2463 17.3587 13.0437 17.3587 12.8417 17.3587Z" fill="black"/>
@@ -98,60 +100,68 @@
 
 <script>
 
+    // Show/hide password logic
     document.getElementById('toggle-password').addEventListener('change', function() {
         const passwordInput = document.getElementById('password');
-        if (this.checked) {
-            passwordInput.type = 'text'; // Show password
-        } else {
-            passwordInput.type = 'password'; // Hide password
-        }
+        passwordInput.type = this.checked ? 'text' : 'password';
     });
 
-
+    // Password submission and validation
     document.getElementById('submit-password').addEventListener('click', function() {
         const enteredPassword = document.getElementById('password').value;
         const errorElement = document.getElementById('password-error');
-        const correctPassword = 'testingsongs123'; // Defined in PHP
+        const correctPassword = 'testingsongs123';
 
         if (enteredPassword === correctPassword) {
-            errorElement.style.display = 'none';
-            document.getElementById('password-form').style.display = 'none';
-            document.getElementById('songs-list').style.display = 'block';
+        errorElement.style.display = 'none';
+        document.getElementById('password-form').style.display = 'none';
+        document.getElementById('songs-list').style.display = 'block';
+        
+        // Remove or hide the email form once the password is correct
+        const emailForm = document.getElementById('email-form');
+        if (emailForm) {
+            emailForm.remove(); // This will remove the email form from the DOM
+            // Or alternatively, use this to hide the email form without removing it:
+            // emailForm.style.display = 'none';
+            }
         } else {
             errorElement.innerText = 'Incorrect password. Please try again.';
             errorElement.style.display = 'block';
         }
     });
 
+    // Variables for current audio and controls
     let currentAudio = null; 
     let playingBtn = null; 
     let currentRowIndex = -1; 
     let songRows = []; 
 
+    // Format time for song length display
     function formatTime(seconds) {
         const minutes = Math.floor(seconds / 60);
         const remainingSeconds = Math.floor(seconds % 60);
         return minutes + ":" + (remainingSeconds < 10 ? '0' : '') + remainingSeconds;
     }
 
+    // Play/pause functionality
     function togglePlayPause(button) {
         const audioSrc = button.getAttribute('data-song');
         const currentRow = button.closest('tr');
-        const newRowIndex = songRows.indexOf(currentRow); 
+        const newRowIndex = songRows.indexOf(currentRow);
 
         if (!currentAudio || currentAudio.src !== audioSrc) {
             if (currentAudio) {
                 currentAudio.pause();
                 if (playingBtn) {
-                    playingBtn.textContent = '▶️'; 
+                    playingBtn.textContent = '▶️';
                 }
             }
 
-            currentAudio = new Audio(audioSrc); 
+            currentAudio = new Audio(audioSrc);
             currentAudio.play();
-            button.textContent = '⏸'; 
-            playingBtn = button; 
-            currentRowIndex = newRowIndex; 
+            button.textContent = '⏸';
+            playingBtn = button;
+            currentRowIndex = newRowIndex;
 
             currentAudio.onended = function () {
                 playNextSong();
@@ -161,15 +171,22 @@
                 button.textContent = '▶️';
             };
 
+            // Update song time duration
+            currentAudio.onloadedmetadata = function () {
+                const timeCell = currentRow.querySelector('.song-time');
+                timeCell.textContent = formatTime(currentAudio.duration);
+            };
+
         } else if (currentAudio.paused) {
-            currentAudio.play(); 
+            currentAudio.play();
             button.textContent = '⏸';
         } else {
-            currentAudio.pause(); 
+            currentAudio.pause();
             button.textContent = '▶️';
         }
     }
 
+    // Play next song in the list
     function playNextSong() {
         if (currentRowIndex < songRows.length - 1) {
             currentRowIndex++;
@@ -179,6 +196,7 @@
         }
     }
 
+    // Play previous song in the list
     function playPrevSong() {
         if (currentRowIndex > 0) {
             currentRowIndex--;
@@ -188,6 +206,7 @@
         }
     }
 
+    // Bind the prev/next song buttons
     function prevSong() {
         playPrevSong();
     }
@@ -196,10 +215,11 @@
         playNextSong();
     }
 
+    // Initialize the song list and event listeners after DOM is loaded
     document.addEventListener('DOMContentLoaded', function() {
         const songTimes = document.querySelectorAll('.song-time');
         const playPauseBtns = document.querySelectorAll('.play-pause-btn');
-        songRows = Array.from(document.querySelectorAll('tbody tr'));
+        songRows = Array.from(document.querySelectorAll('.song-list tbody tr'));
 
         playPauseBtns.forEach(function(button) {
             button.addEventListener('click', function() {
@@ -207,13 +227,15 @@
             });
         });
 
-        songTimes.forEach(function(songTime) {
-            const audio = new Audio(songTime.getAttribute('data-song'));
+        // Calculate and display the song durations
+        songTimes.forEach(function(timeCell) {
+            const songUrl = timeCell.getAttribute('data-song');
+            const audio = new Audio(songUrl);
 
-            audio.addEventListener('loadedmetadata', function() {
-                const duration = audio.duration;
-                songTime.textContent = formatTime(duration);
-            });
+            audio.onloadedmetadata = function() {
+                timeCell.textContent = formatTime(audio.duration);
+            };
         });
     });
+
 </script>
