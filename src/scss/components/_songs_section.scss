@@ -32,6 +32,8 @@
         }
         .songs-top{
             margin-bottom: 50px;
+            display: flex;
+            justify-content: space-between;
             .heading{
                 margin-bottom: 20px;
                 h2{
@@ -202,7 +204,7 @@
                         &:hover{
                             cursor: pointer;
                             background: #fff;    
-                            td{
+                            td,a{
                                 color: #000; 
                             }
                             svg{
@@ -211,7 +213,7 @@
                                 } 
                             }  
                         }
-                        td{
+                        td,a{
                             text-align: left;   
                             font-family: $montserrat;
                             font-size: 20px;

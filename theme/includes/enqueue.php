@@ -20,8 +20,8 @@
 			[
 				"name" => 'jquery.js', 
 				"type" => 'js',
-				"path" => 'https://code.jquery.com/jquery-3.3.1.min.js',
-				"version" => '3.3.1',
+				"path" => 'https://code.jquery.com/jquery-3.7.1.min.js',
+				"version" => '3.7.1',
 				"loadInFooter" => false
 			],
 			[

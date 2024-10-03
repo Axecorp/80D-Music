@@ -3,11 +3,16 @@
     <img src="<?php echo "/wp-content/uploads/2024/10/Group-206.png"; ?>" alt="" class="audio-img-4">
     <div class="songs-container" style="background-image: url('/wp-content/uploads/2024/10/Calendar.png')">
         <div class="songs-top">
-            <div class="heading">
-                <h2><?php echo $block['heading']; ?></h2>
+            <div class="songs-top-left">
+                <div class="heading">
+                    <h2><?php echo $block['heading']; ?></h2>
+                </div>
+                <div class="sub-heading">
+                    <p><?php echo $block['subheading']; ?></p>
+                </div>
             </div>
-            <div class="sub-heading">
-                <p><?php echo $block['subheading']; ?></p>
+            <div class="songs-top-right">
+                <?php echo do_shortcode('[ivory-search id="84" title="AJAX Search Form"]'); ?>
             </div>
         </div>
 
@@ -17,7 +22,7 @@
             <input type="checkbox" id="toggle-password" />
             <label for="toggle-password">(Show Password)</label>
             <button id="submit-password">Submit</button>
-            <a id="req-pass" href="#contact">(If you don't have access to the password, kindly fill the form below.)</a>
+            <a id="req-pass">(If you don't have access to the password, kindly fill the form below.)</a>
             <p id="password-error" style="color: red; display: none;"></p>
         </div>
 
@@ -57,7 +62,6 @@
                     ?>
                     <tr class="song-row">
                         <td class="song-controls">
-
                             <button class="prev-btn" disabled>
                                 <img src="/wp-content/uploads/2024/10/prev.png" alt="Previous">
                             </button>
@@ -67,9 +71,8 @@
                             <button class="next-btn" disabled>
                                 <img src="/wp-content/uploads/2024/10/next.png" alt="Next">
                             </button>
-
                         </td>
-                        <td><?php the_title(); ?></td>
+                        <td><a href="<?php echo the_permalink(); ?>"><?php the_title(); ?></a></td>
                         <td class="song-time" data-song="<?php echo esc_url($song_mp3_file); ?>">Calculating...</td>
                         <td class="act">
                             <a href="#" class="disabled-link" href="#"><svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">

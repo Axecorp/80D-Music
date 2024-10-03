@@ -13,3 +13,5 @@ function enqueue_chartjs() {
     wp_enqueue_script('chart-js', 'https://cdn.jsdelivr.net/npm/chart.js', array(), null, true);
 }
 add_action('wp_enqueue_scripts', 'enqueue_chartjs');
+
+
