@@ -16,18 +16,28 @@
             </div>
         </div>
 
-        <div id="password-form">
-            <label for="password" class="passlabel">Enter Password:</label>
-            <input type="password" id="password" />
-            <input type="checkbox" id="toggle-password" />
-            <label for="toggle-password">(Show Password)</label>
-            <button id="submit-password">Submit</button>
-            <a id="req-pass">(If you don't have access to the password, kindly fill the form below.)</a>
-            <p id="password-error" style="color: red; display: none;"></p>
-        </div>
+        <div id="pass-popup">
+            <div class="popup-inner">
+                <div class="popup-top">
+                    <p>Listen to songs</p>
+                    <span id="close-popup">x</span>
+                </div>
+                <div id="password-form">
+                    <label for="password" class="passlabel">Enter Password:</label>
+                    <input type="password" id="password" />
+                    <div class="pass-toggel">
+                        <input type="checkbox" id="toggle-password" />
+                        <label for="toggle-password">(Show Password)</label>
+                    </div>
+                    <button id="submit-password">Submit</button>
+                    <a id="req-pass">(If you don't have access to the password, kindly fill the form below.)</a>
+                    <p id="password-error" style="color: red; display: none;"></p>
+                </div>
 
-        <div id="email-form">
-            <?php echo do_shortcode('[gravityform id="2" title="false" description="false" ajax="true"]'); ?>
+                <div id="email-form">
+                    <?php echo do_shortcode('[gravityform id="2" title="false" description="false" ajax="true"]'); ?>
+                </div>
+            </div>
         </div>
 
         <div id="songs-list" class="songs-bottom">
@@ -72,7 +82,7 @@
                                 <img src="/wp-content/uploads/2024/10/next.png" alt="Next">
                             </button>
                         </td>
-                        <td><a href="<?php echo the_permalink(); ?>"><?php the_title(); ?></a></td>
+                        <td><?php the_title(); ?></td>
                         <td class="song-time" data-song="<?php echo esc_url($song_mp3_file); ?>">Calculating...</td>
                         <td class="act">
                             <a href="#" class="disabled-link" href="#"><svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -100,13 +110,35 @@
 
 <script>
     // Show/hide password logic
+
+    $(document).ready(function() {
+		$(".play-pause-btn img").click(function(){
+            $("#pass-popup").addClass("active");
+            $("body").addClass("active");
+		})
+        $("#songs-list").click(function() {
+            $("#pass-popup").addClass("active");
+            $("body").addClass("active");
+        });
+        $("#submit-password").click(function(){
+            $("#pass-popup").remove();
+            $("body").removeClass("active");
+        });
+        $("#gform_submit_button_2").click(function(){
+            $("#pass-popup").remove();
+            $("body").removeClass("active");
+        });
+        $("#close-popup").click(function(){
+            $("#pass-popup").removeClass("active");
+            $("body").removeClass("active");
+        });
+    });
     document.getElementById('toggle-password').addEventListener('change', function() {
         const passwordInput = document.getElementById('password');
         passwordInput.type = this.checked ? 'text' : 'password';
     });
 
-    // Password submission and validation
-    document.getElementById('submit-password').addEventListener('click', function() {
+	document.getElementById('submit-password').addEventListener('click', function() {
         const enteredPassword = document.getElementById('password').value;
         const errorElement = document.getElementById('password-error');
         const correctPassword = 'testingsongs123';
@@ -132,7 +164,6 @@
             errorElement.style.display = 'block';
         }
     });
-
 
 
 

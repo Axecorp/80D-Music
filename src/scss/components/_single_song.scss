@@ -161,7 +161,40 @@
     }    
 }
 
+#field_2_1 label{
+	font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+    color: #fff;
+}
 
+.gform_required_legend{
+	display: none;
+}
+body button{
+	transition: all 0.3s ease;
+}
+body a {
+	transition: all 0.3s ease;
+}
+#homepage-btn {
+	padding: 20px;
+	margin: 0 auto;
+    border-radius: 17px;
+    background: #fff;
+    color: #000;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 900;
+	transition: all 0.3s ease;
+    font-size: 20px;
+}
+#homepage-btn:hover{
+	color: #fff;
+	background: rgba(0, 0, 0, 0.3);
+}
+.music-box{
+	 display: flex;
+    flex-direction: column;
+}
 
 @keyframes scaleAnimation {
   0% {

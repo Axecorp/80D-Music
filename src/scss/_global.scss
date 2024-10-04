@@ -23,7 +23,9 @@ html, body {
 }
 body {
     position:relative;
-    
+    &.active{
+      overflow-y: hidden !important;
+    }
 }
 
 

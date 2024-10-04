@@ -48,6 +48,7 @@
                     <canvas id="audio-visualizer"></canvas>
                 </div>
             </div>
+			<a href="<?php echo get_site_url(); ?>" id="homepage-btn">Go Back</a>
         </div>
     </div>
 </section>
@@ -90,14 +91,14 @@ document.addEventListener('DOMContentLoaded', function () {
     playPauseButton.addEventListener('click', function () {
         if (audioPlayer.paused) {
             audioPlayer.play();
-            playIcon.src = "/wp-content/uploads/2024/10/pause.png"; // Update with actual pause image path
+            playIcon.src = "/wp-content/uploads/2024/10/pause.png"; 
             if (!visualizerRunning) {
                 startVisualizer(); // Start the visualizer only once
                 visualizerRunning = true;
             }
         } else {
             audioPlayer.pause();
-            playIcon.src = "/wp-content/uploads/2024/10/play.png"; // Update with actual play image path
+            playIcon.src = "/wp-content/uploads/2024/10/play.png"; 
         }
     });
 
